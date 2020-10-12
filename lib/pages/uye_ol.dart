@@ -20,12 +20,26 @@ class _UyeOlState extends State<UyeOl> {
   final _adController = TextEditingController();
   final _soyadController = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  bool isLoading=false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      body: SingleChildScrollView(
+      body: Center(
+        child: isLoading
+        ? Column(
+        children: <Widget>[
+        CircularProgressIndicator(),
+    Divider(
+    height: 20,
+    color: Colors.transparent,
+    ),
+    Text("Giriş yaplılıyor..."),
+    ],
+    mainAxisSize: MainAxisSize.min,
+    )
+        :SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
@@ -161,6 +175,7 @@ class _UyeOlState extends State<UyeOl> {
                               if(_formKey.currentState.validate()){
                                 setState(() {
                                   _uyeOl();
+
                                 });
                               }
                               debugPrint("23456");
@@ -177,7 +192,7 @@ class _UyeOlState extends State<UyeOl> {
           ),
         ),
       ),
-    );
+    ));
   }
 
   void _uyeOl() async {
@@ -198,6 +213,7 @@ class _UyeOlState extends State<UyeOl> {
         });
       } else {
         setState(() {
+          isLoading=true;
           _showScaffold("Bu mail zaten kullanılıyor!");
         });
 
