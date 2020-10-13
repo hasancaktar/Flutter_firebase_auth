@@ -59,8 +59,8 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: isLoading
             ? Center(
-          child: CircularProgressIndicator(),
-        )
+                child: CircularProgressIndicator(),
+              )
             : SingleChildScrollView(
                 child: Container(
                   height: MediaQuery.of(context).size.height,
@@ -119,37 +119,36 @@ class _MyHomePageState extends State<MyHomePage> {
                                               FaIcon(FontAwesomeIcons.envelope),
                                           hintText: "ornek@mail.com",
                                           labelText: "Email"),
-                                      validator: (val) => !EmailValidator.validate(val, true)
-                                          ? 'Not a valid email.'
-                                          : null,
+                                      validator: (val) =>
+                                          !EmailValidator.validate(val, true)
+                                              ? 'Not a valid email.'
+                                              : null,
                                     ),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(
                                         right: 25, left: 25),
                                     child: TextFormField(
-                                      controller: _sifreController,
-                                      obscureText: true,
-                                      decoration: InputDecoration(
-                                          border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(15)),
-                                          suffixIcon:
-                                              FaIcon(FontAwesomeIcons.eyeSlash),
-                                          hintText: "******",
-                                          labelText: "Şifre"),
-                                      validator: (value) {
-                                        if(value.isEmpty){
-                                          return "Lütfen şifrenizi girin";
-                                        }
-                                        if(value.length<6){
-                                          return "Şifre en az 6 karakter olmalı";
-                                        }
-                                        else {
-                                          return null;
-                                        }
-                                      }
-                                    ),
+                                        controller: _sifreController,
+                                        obscureText: true,
+                                        decoration: InputDecoration(
+                                            border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(15)),
+                                            suffixIcon: FaIcon(
+                                                FontAwesomeIcons.eyeSlash),
+                                            hintText: "******",
+                                            labelText: "Şifre"),
+                                        validator: (value) {
+                                          if (value.isEmpty) {
+                                            return "Lütfen şifrenizi girin";
+                                          }
+                                          if (value.length < 6) {
+                                            return "Şifre en az 6 karakter olmalı";
+                                          } else {
+                                            return null;
+                                          }
+                                        }),
                                   ),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
@@ -206,11 +205,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                       onTap: () {
                                         if (_formKey.currentState.validate()) {
-
                                           setState(() {
-
                                             _girisYap(context);
-                                            isLoading=true;
+                                            isLoading = true;
                                           });
                                         }
 
@@ -290,33 +287,30 @@ class _MyHomePageState extends State<MyHomePage> {
       var oturumAcmisKullanici = oturumAcmisKullaniciAuthResoult.user;
 
       if (oturumAcmisKullanici.emailVerified) {
-
         print("oturum açıldı");
 
         _showScaffold("Oturum AÇILDI");
 
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil('/anasayfa', (Route<dynamic> route) => false);
+        Navigator.of(context).pushNamedAndRemoveUntil(
+            '/anasayfa', (Route<dynamic> route) => false);
       }
       if (!oturumAcmisKullanici.emailVerified) {
+        setState(() {
+          print("mail onaylı değil.");
+          isLoading=false;
+          _showScaffold("Lütfen mailinizi onaylayın");
+          _auth.signOut();
+        });
 
-        print("mail onaylı değil.");
-        _showScaffold("Lütfen mailinizi onaylayın");
-        _auth.signOut();
       }
 
-      setState(() {});
-    }).catchError((hata) {
 
+    }).catchError((hata) {
       print(hata.toString());
       setState(() {
-        isLoading=true;
         _showScaffold("Mail veya Şifre hatalı");
-
-
-
+        isLoading = false;
       });
-
     });
   }
 }
