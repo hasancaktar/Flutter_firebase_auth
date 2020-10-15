@@ -117,7 +117,7 @@ class _UyeOlState extends State<UyeOl> {
                                           validator: (value) => EmailValidator
                                                   .validate(value)
                                               ? null
-                                              : 'Lütfen geçerli bir mail adresi girinaa.'),
+                                              : 'Lütfen geçerli bir mail adresi girin.'),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(
@@ -141,7 +141,7 @@ class _UyeOlState extends State<UyeOl> {
                                             if (value.length < 6) {
                                               return "Şifre en az 6 haneli olmalı";
                                             }
-                                            return "yanlış bir durum mevcut";
+                                            return null;
                                           }),
                                     ),
                                     SizedBox(
