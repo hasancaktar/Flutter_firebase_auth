@@ -23,12 +23,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  firebase: ^7.3.0
-  firebase_core: ^0.5.0
-  firebase_auth: ^0.18.1+1
-  google_fonts: ^1.1.0
+  firebase: ^7.3.2
+  firebase_core: ^0.5.0+1
+  firebase_auth: ^0.18.1+2
+  google_fonts: ^1.1.1
   email_validator: ^1.0.6
-  font_awesome_flutter: ^8.9.0
+  font_awesome_flutter: ^8.10.0
   lit_firebase_auth: ^0.3.0
 
 

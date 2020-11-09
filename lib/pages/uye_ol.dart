@@ -1,12 +1,11 @@
 import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebaseyeni/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 
 class UyeOl extends StatefulWidget {
   UyeOl({Key key}) : super(key: key);
